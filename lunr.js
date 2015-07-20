@@ -369,15 +369,8 @@ lunr.tokenizer = function (obj) {
   }
 
   if (isJapanese) {
-    var reSpaceOnly = /^[　 ]+$/;
-    var rePunctuationOnly = /^[-–—―.。・（）()［］\[\]｛｝{}【】⟨⟩、､,，،…‥〽「」『』〜~！!：:？?\"'|_＿“”‘’;/⁄／«»]+$/;
     var segmenter = new TinySegmenter();
-
-    return segmenter
-      .segment(txt)
-      .filter(function(s) {
-        return !reSpaceOnly.test(s) && !rePunctuationOnly.test(s)
-      })
+    return segmenter.segment(txt)
   } else {
     return obj.toString().trim().toLowerCase().split(/[\s\-]+/)
   }
@@ -1921,9 +1914,14 @@ lunr.Pipeline.registerFunction(lunr.stopWordFilter, 'stopWordFilter')
  * @see lunr.Pipeline
  */
 lunr.trimmer = function (token) {
+  var rePrefix = /^[　 	-–—―.。・（）()［］\[\]｛｝{}【】⟨⟩〈〉<>、､,，،…‥〽「」『』〜~！!：:？?\"'|_＿〝〟“”‘’;/⁄／«»↵]+/;
+  var reSuffix =  /[　 	-–—―.。・（）()［］\[\]｛｝{}【】⟨⟩〈〉<>、､,，،…‥〽「」『』〜~！!：:？?\"'|_＿〝〟“”‘’;/⁄／«»↵]+$/;
+
   return token
-    .replace(/^\W+/, '')
-    .replace(/\W+$/, '')
+    //.replace(/^\W+/, '')
+    //.replace(/\W+$/, '')
+    .replace(rePrefix, '')
+    .replace(reSuffix, '')
 }
 
 lunr.Pipeline.registerFunction(lunr.trimmer, 'trimmer')
