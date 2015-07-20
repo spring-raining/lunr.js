@@ -1,5 +1,6 @@
 
 SRC = lib/lunr.js \
+	lib/tiny_segmenter.js \
 	lib/utils.js \
 	lib/event_emitter.js \
 	lib/tokenizer.js \
@@ -19,12 +20,12 @@ VERSION = $(shell cat VERSION)
 SERVER_PORT ?= 3000
 TEST_PORT ?= 32423
 
-DOX ?= ./node_modules/.bin/dox
-DOX_TEMPLATE ?= ./node_modules/.bin/dox-template
+DOX ?= ./node_modules/dox/bin/dox
+DOX_TEMPLATE ?= ./node_modules/dox-template/bin/dox-template
 NODE ?= /usr/local/bin/node
 NPM ?= /usr/local/bin/npm
-PHANTOMJS ?= ./node_modules/.bin/phantomjs
-UGLIFYJS ?= ./node_modules/.bin/uglifyjs
+PHANTOMJS ?= ./node_modules/phantomjs/bin/phantomjs
+UGLIFYJS ?= ./node_modules/uglify-js/bin/uglifyjs
 
 all: node_modules lunr.js lunr.min.js docs bower.json package.json component.json example
 
