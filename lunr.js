@@ -1914,8 +1914,8 @@ lunr.Pipeline.registerFunction(lunr.stopWordFilter, 'stopWordFilter')
  * @see lunr.Pipeline
  */
 lunr.trimmer = function (token) {
-  var rePrefix = /^[　 	-–—―.。・（）()［］\[\]｛｝{}【】⟨⟩〈〉<>、､,，،…‥〽「」『』〜~！!：:？?\"'|_＿〝〟“”‘’;/⁄／«»↵]+/;
-  var reSuffix =  /[　 	-–—―.。・（）()［］\[\]｛｝{}【】⟨⟩〈〉<>、､,，،…‥〽「」『』〜~！!：:？?\"'|_＿〝〟“”‘’;/⁄／«»↵]+$/;
+  var rePrefix = /^[　 	\-–—―.。・（）()［］\[\]｛｝{}【】⟨⟩〈〉<>、､,，،…‥〽「」『』〜~！!：:？?\"'|_＿〝〟“”‘’;/⁄／«»↵]+/;
+  var reSuffix =  /[　 	\-–—―.。・（）()［］\[\]｛｝{}【】⟨⟩〈〉<>、､,，،…‥〽「」『』〜~！!：:？?\"'|_＿〝〟“”‘’;/⁄／«»↵]+$/;
 
   return token
     //.replace(/^\W+/, '')
